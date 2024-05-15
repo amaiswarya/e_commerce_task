@@ -1,7 +1,5 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:ecommerce_task/views/home/home_page.dart';
-import 'package:ecommerce_task/views/welcome/welcome_page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:ecommerce_task/utils/firebase_services.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -13,6 +11,7 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
+  FirebaseAuthentication firebaseAuthentication = FirebaseAuthentication();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,23 +21,9 @@ class _SplashState extends State<Splash> {
       splash: Center(
         child: Image.asset("assets/images/splash.gif"),
       ),
-      nextScreen: checkLog(),
+      nextScreen: firebaseAuthentication.checkLog(),
       splashTransition: SplashTransition.fadeTransition,
       pageTransitionType: PageTransitionType.fade,
     ));
   }
-}
-
-Widget checkLog() {
-  return StreamBuilder(
-      stream: FirebaseAuth.instance.authStateChanges(),
-      builder: (BuildContext context, AsyncSnapshot<User?> user) {
-        if (user.connectionState == ConnectionState.waiting) {
-          return const CircularProgressIndicator();
-        } else if (user.hasData) {
-          return const HomePage();
-        } else {
-          return const WelcomePage();
-        }
-      });
 }

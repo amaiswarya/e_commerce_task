@@ -1,7 +1,12 @@
+import 'package:ecommerce_task/constants/button_widgte.dart';
+import 'package:ecommerce_task/constants/common_widgets.dart';
+import 'package:ecommerce_task/constants/image_container.dart';
+import 'package:ecommerce_task/constants/text_widget.dart';
 import 'package:ecommerce_task/views/welcome/welcome_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../../constants/iconcontainer_widget.dart';
 import '../../data/data.dart';
 
 class HomePage extends StatelessWidget {
@@ -15,14 +20,12 @@ class HomePage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const SizedBox(
-                height: 40,
-              ),
+              CommonWidgets.sizedbox(ht: 50),
               Row(
                 children: [
                   Container(
                     padding: const EdgeInsets.all(10),
-                    height: 50,
+                    height: 45,
                     width: 170,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
@@ -41,130 +44,63 @@ class HomePage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    width: 10,
+                  CommonWidgets.sizedbox(wd: 10),
+                  const IconContainer(
+                    icon: Icons.notifications_active,
                   ),
-                  Container(
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          color: const Color.fromARGB(255, 231, 229, 229)),
-                      child: const Icon(
-                        Icons.notifications_active,
-                        color: Color.fromARGB(255, 172, 170, 170),
-                      )),
-                  const SizedBox(
-                    width: 10,
+                  CommonWidgets.sizedbox(wd: 10),
+                  const IconContainer(
+                    icon: Icons.shopping_bag,
                   ),
-                  Container(
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          color: const Color.fromARGB(255, 231, 229, 229)),
-                      child: const Icon(
-                        Icons.shopping_bag,
-                        color: Color.fromARGB(255, 172, 170, 170),
-                      )),
-                  const SizedBox(width: 10),
-                  Container(
-                    alignment: Alignment.center,
-                    width: 80,
-                    height: 50,
-                    decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(20)),
-                    child: GestureDetector(
-                      onTap: () {
-                        FirebaseAuth.instance.signOut();
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (_) => const WelcomePage()));
-                      },
-                      child: const Text(
-                        "Sign Out",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                  ),
+                  CommonWidgets.sizedbox(wd: 10),
+                  ButtonWidget(
+                    wd: 60,
+                    ht: 40,
+                    radius: BorderRadius.circular(12),
+                    fs: 13,
+                    tap: () {
+                      FirebaseAuth.instance.signOut();
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (_) => const WelcomePage()));
+                    },
+                    text: "Sign Out",
+                  )
                 ],
               ),
-              const SizedBox(
-                height: 20,
-              ),
+              CommonWidgets.sizedbox(ht: 20),
               Container(
                 clipBehavior: Clip.hardEdge,
                 decoration:
                     BoxDecoration(borderRadius: BorderRadius.circular(16)),
-                height: 250,
+                height: 280,
                 width: double.infinity,
                 child: Image.asset(
                   "assets/images/shoes.jpg",
                   fit: BoxFit.cover,
                 ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
+              CommonWidgets.sizedbox(ht: 20),
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Container(
-                      height: 60,
-                      width: 60,
-                      decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color.fromARGB(255, 231, 229, 229)),
-                      child: Image.network(
-                          fit: BoxFit.cover,
-                          "https://cdn.iconscout.com/icon/free/png-256/free-nike-15-761696.png?f=webp")),
-                  Container(
-                      clipBehavior: Clip.hardEdge,
-                      height: 60,
-                      width: 60,
-                      decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color.fromARGB(255, 231, 229, 229)),
-                      child: Image.network(
-                          fit: BoxFit.cover,
-                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbsSMpjHmHBnGZwCCFanBQnIdiJJDeMDTThw&s")),
-                  Container(
-                      height: 60,
-                      width: 60,
-                      decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color.fromARGB(255, 231, 229, 229)),
-                      child: Image.network(
-                          fit: BoxFit.cover,
-                          "https://cdn.icon-icons.com/icons2/3914/PNG/512/puma_logo_icon_248754.png")),
-                  Container(
-                      clipBehavior: Clip.hardEdge,
-                      height: 60,
-                      width: 60,
-                      decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color.fromARGB(255, 231, 229, 229)),
-                      child: Image.network(
-                          fit: BoxFit.cover,
-                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAp9oKvsThFkkqtO433NfWWq09YEKEDGg_Ag&s")),
-                  Container(
-                      clipBehavior: Clip.hardEdge,
-                      height: 60,
-                      width: 60,
-                      decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color.fromARGB(255, 231, 229, 229)),
-                      child: Image.network(
-                          fit: BoxFit.cover,
-                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdp8tAaYWW9iAFmF62Dw1uFz_T6RKS9go0VQ&s")),
+                  ImageContainer(
+                      imgUrl:
+                          "https://cdn.iconscout.com/icon/free/png-256/free-nike-15-761696.png?f=webp"),
+                  ImageContainer(
+                      imgUrl:
+                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbsSMpjHmHBnGZwCCFanBQnIdiJJDeMDTThw&s"),
+                  ImageContainer(
+                      imgUrl:
+                          "https://cdn.icon-icons.com/icons2/3914/PNG/512/puma_logo_icon_248754.png"),
+                  ImageContainer(
+                      imgUrl:
+                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAp9oKvsThFkkqtO433NfWWq09YEKEDGg_Ag&s"),
+                  ImageContainer(
+                      imgUrl:
+                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdp8tAaYWW9iAFmF62Dw1uFz_T6RKS9go0VQ&s"),
                 ],
               ),
-              const SizedBox(
-                height: 5,
-              ),
+              CommonWidgets.sizedbox(ht: 5),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -175,18 +111,15 @@ class HomePage extends StatelessWidget {
                   Text("Converse"),
                 ],
               ),
-              const SizedBox(
-                height: 20,
-              ),
+              CommonWidgets.sizedbox(ht: 20),
               Row(
                 children: [
-                  const Text(
-                    "Today Sale!",
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w900),
+                  const TextWidget(
+                    text: "Today Sale!",
+                    fontsize: 24,
+                    fw: FontWeight.w800,
                   ),
-                  const SizedBox(
-                    width: 8,
-                  ),
+                  CommonWidgets.sizedbox(wd: 8),
                   Container(
                       alignment: Alignment.center,
                       height: 30,
@@ -194,24 +127,21 @@ class HomePage extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
                           color: const Color.fromARGB(255, 247, 225, 232)),
-                      child: const Text(
-                        "04:43:23",
-                        style: TextStyle(
-                            color: Color.fromARGB(255, 232, 136, 168),
-                            fontSize: 22,
-                            fontWeight: FontWeight.w900),
+                      child: const TextWidget(
+                        text: "04:43:23",
+                        fontsize: 22,
+                        fw: FontWeight.w900,
+                        color: Color.fromARGB(255, 232, 136, 168),
                       )),
-                  const SizedBox(
-                    width: 50,
-                  ),
-                  const Text("See More",
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
+                  CommonWidgets.sizedbox(wd: 50),
+                  const TextWidget(
+                    text: "See More",
+                    fontsize: 18,
+                    fw: FontWeight.w700,
+                  )
                 ],
               ),
-              const SizedBox(
-                height: 30,
-              ),
+              CommonWidgets.sizedbox(ht: 20),
               SizedBox(
                 height: 350,
                 child: ListView.builder(
